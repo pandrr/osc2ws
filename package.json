@@ -1,0 +1,21 @@
+{
+  "name": "osc2ws",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "artnet": "^1.4.0",
+    "colors": "^1.3.3",
+    "face-api.js": "^0.18.0",
+    "internal-ip": "^4.2.0",
+    "mqtt-server": "^0.1.0",
+    "osc": "^2.2.4",
+    "ws": "^6.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
