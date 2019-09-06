@@ -7,13 +7,15 @@ You can then use your browsers websocket API to connect to it and receive the da
 
 ## installation
 
+please install node.js for your operating system. open a terminal in the osc2ws directory and type:
+
 `npm i`
 
 ## start
 
 `node main.js`
 
-after starting it should look like this:
+After starting up, it should look like this:
 
 ```
 Local IP: 192.168.1.169
