@@ -21,8 +21,9 @@ OutWebSocket.prototype.start=function()
       
     wss.on('connection', function connection(websock)
     {
-        console.log(colors.yellow('[websocket] client has connected! ('+this._clients.length+')'));
+        
         this._clients.push(websock);
+        console.log(colors.yellow('[websocket] client has connected! ('+this._clients.length+')'));
         this._logNumClients();
 
         websock.on('close', function close() {
@@ -64,7 +65,6 @@ OutWebSocket.prototype.send=function(msg)
     var str=JSON.stringify(msg);
 
      
-
     for(var i=0;i<this._clients.length;i++)
     {
         if (this._clients[i].readyState !== WebSocket.OPEN) { 

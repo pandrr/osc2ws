@@ -14,10 +14,10 @@ var InOSC=function(output)
         this.mps=0;
     }.bind(this),1000);
 
-    console.log(colors.cyan("starting input osc on port "+this.port));
+    console.log(colors.cyan("starting osc receiver on port "+this.port));
 
     this._udpPort = new osc.UDPPort({
-        localAddress: internalIp.v4.sync(),//"192.168.1.169",
+        localAddress: internalIp.v4.sync(),
         localPort: this.port,
         metadata: true
     });
@@ -27,16 +27,14 @@ var InOSC=function(output)
     
     this._udpPort.on("message", function (oscMsg)
     {
-        console.log(oscMsg);
+        const arr=[];
         for(var i=0;i<oscMsg.args.length;i++)
-        {
-            output.send(new Message('osc'+oscMsg.address,'f',oscMsg.args[i].value));
-        }
+            arr.push(oscMsg.args[i].value);
 
+        output.send(new Message(""+oscMsg.address,arr));
 
         this.mps++;
     }.bind(this));
-    
 
 }
 

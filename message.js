@@ -1,9 +1,8 @@
 
-var Message=function(id,type,value)
+var Message=function(address,values)
 {
-    this.v=value;
-    this.id=id;
-    this.t=type
+    this.v=values;
+    this.a=address;
 }
 
 module.exports.Message=Message;
