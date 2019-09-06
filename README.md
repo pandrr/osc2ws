@@ -11,4 +11,4 @@ You can then use your browsers websocket API to connect to it and receive the da
 
 ## start
 
-node main.js
+`node main.js`
