@@ -25,3 +25,5 @@ Starting OSC receiver on port 9000
 
 Now connect your websocket to `ws://localhost:8000`
 Send OSC data to `192.168.1.169:9000`
+
+Check the wiki for instructions on how to make it work with cables.gl
