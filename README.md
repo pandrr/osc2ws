@@ -7,7 +7,9 @@ You can then use your browsers websocket API to connect to it and receive the da
 
 ## installation
 
-please install node.js for your operating system. open a terminal in the osc2ws directory and type:
+please install node.js for your operating system. <br>
+Download or clone the repo into a folder. <br>
+Open a terminal in the osc2ws directory and type:
 
 `npm i`
 
