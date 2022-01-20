@@ -1,13 +1,14 @@
-var colors = require('colors/safe');
+const colors = require('colors/safe');
 const WebSocket = require('ws');
 
-var OutWebSocket=function()
-{
-    this.port=8000;
-    this._websocket=null;
-    this._clients=[];
-}
+const OutWebSocket = function () {
+    this.port = 8005;
+    this._clients = [];
+};
 
+
+
+const callBack = () => console.log ( 'WS listener event received.' );
 
 OutWebSocket.prototype.start=function()
 {
@@ -15,13 +16,13 @@ OutWebSocket.prototype.start=function()
         {
             port: this.port,
             perMessageDeflate: false
-        });
+        }, callBack );
 
     console.log(colors.cyan('starting websocket server on port '+this.port));
-      
+
     wss.on('connection', function connection(websock)
     {
-        
+
         this._clients.push(websock);
         console.log(colors.yellow('[websocket] client has connected! ('+this._clients.length+')'));
         this._logNumClients();
@@ -30,7 +31,7 @@ OutWebSocket.prototype.start=function()
             console.log(colors.red('[websocket] client disconnected'));
             this._removeClient(websock);
           }.bind(this));
-    
+
         websock.on('message', function incoming(message)
         {
             // console.log('received: %s', message);
@@ -42,10 +43,10 @@ OutWebSocket.prototype.start=function()
              websock.close();
              websock._socket.destroy();
              Client.splice(findClient(websock.upgradeReq.url));
-             
+
         }
       }.bind(this));
-    
+
     }.bind(this));
 }
 
@@ -62,16 +63,16 @@ OutWebSocket.prototype._removeClient=function(ws)
 
 OutWebSocket.prototype.send=function(msg)
 {
-    var str=JSON.stringify(msg);
+    const str = JSON.stringify(msg);
 
-     
-    for(var i=0;i<this._clients.length;i++)
+
+    for(let i=0; i<this._clients.length; i++)
     {
-        if (this._clients[i].readyState !== WebSocket.OPEN) { 
-            console.log(colors.red('[websocket] client '+i+' readystate ',this._clients[i].readyState));
+        if (this._clients[i].readyState !== WebSocket.OPEN) {
+            console.log('[websocket] client '+i+' readystate ',this._clients[i].readyState);
             continue;
-          } 
-    
+          }
+
         this._clients[i].send(str);
     }
 
